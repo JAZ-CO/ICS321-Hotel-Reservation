@@ -1,0 +1,91 @@
+type Hotel @table(key: "hotelId") {
+  hotelId: Int! @col(dataType: "serial")
+  hotelName: String!
+  address: String!
+  city: String!
+  phoneNumber: String!
+  email: String! @unique
+  rating: Float
+}
+
+type Guest @table(key: "guestId") {
+  guestId: Int! @col(dataType: "serial")
+  firstName: String!
+  lastName: String!
+  phoneNumber: String!
+  email: String! @unique
+  nationalIdOrPassport: String! @unique
+  address: String
+}
+
+type JobType @table(key: "jobTypeId") {
+  jobTypeId: Int! @col(dataType: "serial")
+  jobTitle: String! @unique
+  department: String!
+  description: String
+}
+
+type RoomType @table(key: "roomTypeId") {
+  roomTypeId: Int! @col(dataType: "serial")
+  typeName: String! @unique
+  capacity: Int!
+  pricePerNight: Float!
+  description: String
+}
+
+type Employee @table(key: "employeeId") {
+  employeeId: Int! @col(dataType: "serial")
+  firstName: String!
+  lastName: String!
+  phoneNumber: String!
+  email: String! @unique
+  hireDate: Date!
+  salary: Float
+
+  hotel: Hotel! @ref(fields: "hotelId", references: "hotelId")
+  hotelId: Int!
+
+  jobType: JobType! @ref(fields: "jobTypeId", references: "jobTypeId")
+  jobTypeId: Int!
+}
+
+type Room @table(key: "roomId") {
+  roomId: Int! @col(dataType: "serial")
+  roomNumber: String! @unique
+  floorNumber: Int!
+  roomStatus: String!
+
+  hotel: Hotel! @ref(fields: "hotelId", references: "hotelId")
+  hotelId: Int!
+
+  roomType: RoomType! @ref(fields: "roomTypeId", references: "roomTypeId")
+  roomTypeId: Int!
+}
+
+type Booking @table(key: "bookingId") {
+  bookingId: Int! @col(dataType: "serial")
+  bookingDate: Date!
+  checkInDate: Date!
+  checkOutDate: Date!
+  bookingStatus: String!
+  numberOfGuests: Int!
+  totalAmount: Float!
+
+  guest: Guest! @ref(fields: "guestId", references: "guestId")
+  guestId: Int!
+
+  room: Room! @ref(fields: "roomId", references: "roomId")
+  roomId: Int!
+}
+
+type Payment @table(key: "paymentId") {
+  paymentId: Int! @col(dataType: "serial")
+  paymentDate: Date!
+  amount: Float!
+  paymentMethod: String!
+  paymentStatus: String!
+  transactionReference: String @unique
+
+  booking: Booking! @ref(fields: "bookingId", references: "bookingId")
+  bookingId: Int!
+}

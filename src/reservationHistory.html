@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <title>Reservation History | LuxeStay Concierge</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600;700&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+            body {
+                font-family: 'Manrope', sans-serif;
+                -webkit-font-smoothing: antialiased;
+            }
+            h1, h2, h3, .font-serif {
+                font-family: 'Noto Serif', serif;
+            }
+        </style>
+        <script id="tailwind-config">
+            tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                "colors": {
+                        "inverse-surface": "#213145",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#cbdbf5",
+                        "surface": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#191c1e",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "primary-container": "#131b2e",
+                        "on-secondary-fixed": "#271900",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#45464d",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#565e74",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-fixed": "#ffdea9",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-bright": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "secondary": "#755a27",
+                        "outline": "#76777d",
+                        "on-surface": "#0b1c30",
+                        "surface-variant": "#d3e4fe",
+                        "outline-variant": "#c6c6cd",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#e6c184",
+                        "primary": "#000000",
+                        "tertiary": "#000000",
+                        "on-tertiary-container": "#818486",
+                        "on-secondary-fixed-variant": "#5b4211",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-container": "#e5eeff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-container-low": "#eff4ff",
+                        "primary-fixed": "#dae2fd",
+                        "on-background": "#0b1c30",
+                        "inverse-on-surface": "#eaf1ff",
+                        "inverse-primary": "#bec6e0",
+                        "secondary-container": "#fed798",
+                        "on-primary-container": "#7c839b",
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-secondary-container": "#785c29"
+                },
+                "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                },
+                "spacing": {
+                        "unit": "4px",
+                        "lg": "24px",
+                        "xl": "40px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "sidebar-width": "280px",
+                        "sm": "8px",
+                        "container-max": "1440px"
+                },
+                "fontFamily": {
+                        "label-caps": ["Manrope"],
+                        "h2": ["Noto Serif"],
+                        "h1": ["Noto Serif"],
+                        "button": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "h3": ["Noto Serif"],
+                        "body-lg": ["Manrope"]
+                },
+                "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                }
+                },
+            },
+            }
+        </script>
+    </head>
+    <body class="bg-background text-on-background">
+        <!-- Top Navigation Bar -->
+        <nav class="fixed top-0 w-full z-50 border-b bg-white/90 backdrop-blur-md border-slate-200 shadow-sm transition-all duration-300 ease-in-out">
+            <div class="flex justify-between items-center px-8 h-20 max-w-[1440px] mx-auto">
+                <div class="text-xl font-bold uppercase tracking-widest text-slate-900">
+                    <a href="../index.html">Home</a>
+                </div>
+                <div class="hidden md:flex items-center gap-8 font-serif text-slate-900 tracking-tight">
+                    <a class="text-slate-500 hover:text-slate-900 transition-colors" href="rooms.html">Rooms</a>
+                    <a class="text-slate-900 border-b-2 border-slate-900 pb-1 font-semibold font-serif tracking-tight" href="reservationHistory.html">Reservations</a>
+                    
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="hidden lg:flex items-center gap-4">
+                        <button class="p-2 hover:bg-slate-50 transition-all rounded-full"onclick="window.location.href='login.html'"><span class="material-symbols-outlined" data-icon="account_circle">account_circle</span></button>
+                    </div>
+                    <button class="bg-primary text-on-primary px-6 py-3 font-button rounded-lg hover:opacity-90 transition-all">
+                        Check Availability
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <main class="pt-32 pb-20 px-8 max-w-[1440px] mx-auto">
+            <!-- Header Section -->
+            <div class="mb-12">
+            <h1 class="text-h1 font-h1 text-slate-900 mb-2">Reservation History</h1>
+            <p class="text-body-lg font-body-lg text-on-surface-variant">Review and manage your past and future stays at LuxeStay properties.</p>
+            </div>
+            <!-- Filter & Search Bar -->
+            <div class="bg-white border border-outline-variant p-6 mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-sm rounded-lg">
+            <div class="flex items-center gap-4 flex-1">
+            <div class="relative flex-1 max-w-md">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+            <input class="w-full pl-10 pr-4 py-3 border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary/20 bg-white text-body-md rounded-lg" placeholder="Search by ID or Room Name" type="text"/>
+            </div>
+            <div class="flex items-center gap-2 bg-slate-50 px-4 py-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-slate-100 transition-colors">
+            <span class="material-symbols-outlined text-slate-600">filter_list</span>
+            <span class="font-button text-button text-slate-700">Filter By Wing</span>
+            </div>
+            </div>
+            <div class="flex bg-slate-100 p-1 rounded-xl">
+            <button class="px-6 py-2 font-button text-button rounded-lg bg-white shadow-sm text-slate-900">All Stays</button>
+            <button class="px-6 py-2 font-button text-button rounded-lg text-slate-500 hover:text-slate-900 transition-colors">Upcoming</button>
+            <button class="px-6 py-2 font-button text-button rounded-lg text-slate-500 hover:text-slate-900 transition-colors">Completed</button>
+            </div>
+            </div>
+            <!-- Reservations Grid -->
+            <div id="reservations-container" class="grid grid-cols-1 gap-8">
+                
+            </div>
+            <!-- Pagination -->
+            <div id="pagination-controls" class="mt-12 flex items-center justify-center gap-2">
+                <button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-slate-400 hover:bg-slate-50 transition-colors">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button class="w-10 h-10 flex items-center justify-center rounded border border-primary bg-primary text-on-primary font-bold">1</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-slate-600 hover:bg-slate-50 transition-colors">2</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-slate-600 hover:bg-slate-50 transition-colors">3</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-slate-400 hover:bg-slate-50 transition-colors">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+        </main>
+        <script src="reservationHistory.js"></script>
+        <!-- Footer -->
+        <footer class="w-full border-t border-slate-800 bg-slate-950 dark:bg-black py-12 px-8 flex flex-col items-center justify-center gap-6">
+        </footer>
+    </body>
+</html>

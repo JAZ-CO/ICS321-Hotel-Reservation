@@ -1,77 +1,160 @@
 const express = require('express');
 const pool = require('./db');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const allowedOrigins = ['http://localhost:5500', 'http://127.0.0.1:5500'];
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1)
+            return callback(new Error('CORS policy violation'), false);
+        return callback(null, true);
+    },
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    credentials: true
+}));
+
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.json({
-    project: 'Hotel Reservation Backend',
-    message: 'Simple Aiven PostgreSQL backend is running.'
-  });
-});
-
 app.get('/health', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT NOW() AS current_time');
-    res.json({ ok: true, databaseTime: result.rows[0].current_time });
-  } catch (error) {
-    res.status(500).json({ ok: false, message: error.message });
-  }
+    try {
+        const result = await pool.query('SELECT NOW() AS current_time');
+        res.json({ ok: true, databaseTime: result.rows[0].current_time });
+    } catch (error) {
+        res.status(500).json({ ok: false, message: error.message });
+    }
 });
 
-app.get('/rooms', async (req, res) => {
-  try {
-    const result = await pool.query(`
-      SELECT r.roomid AS "RoomID",
-             r.roomnumber AS "RoomNumber",
-             r.floornumber AS "FloorNumber",
-             r.roomstatus AS "RoomStatus",
-             rt.typename AS "TypeName",
-             rt.pricepernight AS "PricePerNight"
-      FROM room r
-      JOIN roomtype rt ON r.roomtypeid = rt.roomtypeid
-      ORDER BY r.roomnumber;
-    `);
-    res.json(result.rows);
-  } catch (error) {
-    res.status(500).json({ ok: false, message: error.message });
-  }
+app.get('/api/rooms', async (req, res) => {
+    try {
+        const result = await pool.query(`
+            SELECT r.roomid       AS "RoomID",
+                   r.roomnumber   AS "RoomNumber",
+                   r.floornumber  AS "FloorNumber",
+                   r.roomstatus   AS "RoomStatus",
+                   rt.typename    AS "TypeName",
+                   rt.pricepernight AS "PricePerNight",
+                   rt.capacity    AS "Capacity"
+            FROM room r
+            JOIN roomtype rt ON r.roomtypeid = rt.roomtypeid
+            ORDER BY r.roomnumber;
+        `);
+        res.json(result.rows);
+    } catch (error) {
+        res.status(500).json({ ok: false, message: error.message });
+    }
 });
 
-app.get('/guests', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM guest ORDER BY guestid;');
-    res.json(result.rows);
-  } catch (error) {
-    res.status(500).json({ ok: false, message: error.message });
-  }
+app.post('/api/guests', async (req, res) => {
+    const { FirstName, LastName, PhoneNumber, Email, NationalID, Address } = req.body;
+    try {
+        const result = await pool.query(
+            `INSERT INTO guest (firstname, lastname, phonenumber, email, nationalid, address)
+             VALUES ($1, $2, $3, $4, $5, $6) RETURNING guestid AS "GuestID";`,
+            [FirstName, LastName, PhoneNumber, Email, NationalID, Address]
+        );
+        res.status(201).json({ id: result.rows[0].GuestID });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
-app.get('/bookings', async (req, res) => {
-  try {
-    const result = await pool.query(`
-      SELECT b.bookingid AS "BookingID",
-             g.firstname || ' ' || g.lastname AS "GuestName",
-             r.roomnumber AS "RoomNumber",
-             b.checkindate AS "CheckInDate",
-             b.checkoutdate AS "CheckOutDate",
-             b.bookingstatus AS "BookingStatus",
-             b.totalamount AS "TotalAmount"
-      FROM booking b
-      JOIN guest g ON b.guestid = g.guestid
-      JOIN room r ON b.roomid = r.roomid
-      ORDER BY b.bookingid;
-    `);
-    res.json(result.rows);
-  } catch (error) {
-    res.status(500).json({ ok: false, message: error.message });
-  }
+app.post('/api/login', async (req, res) => {
+    const { name, email } = req.body;
+    try {
+        const result = await pool.query(
+            `SELECT guestid  AS "GuestID",
+                    firstname AS "FirstName"
+             FROM guest
+             WHERE email = $1
+               AND (firstname || ' ' || lastname = $2 OR firstname = $2)`,
+            [email, name]
+        );
+        if (result.rows.length > 0) {
+            res.json(result.rows[0]);
+        } else {
+            res.status(401).send("Invalid name or email.");
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+app.get('/api/bookings', async (req, res) => {
+    try {
+        const result = await pool.query(`
+            SELECT b.bookingid    AS "BookingID",
+                   b.guestid     AS "GuestID",
+                   b.roomid      AS "RoomID",
+                   g.firstname || ' ' || g.lastname AS "GuestName",
+                   r.roomnumber  AS "RoomNumber",
+                   b.checkindate  AS "CheckInDate",
+                   b.checkoutdate AS "CheckOutDate",
+                   b.bookingstatus AS "BookingStatus",
+                   b.totalamount  AS "TotalAmount",
+                   b.numberofguests AS "NumberOfGuests"
+            FROM booking b
+            JOIN guest g ON b.guestid = g.guestid
+            JOIN room r  ON b.roomid  = r.roomid
+            ORDER BY b.bookingid DESC;
+        `);
+        res.json(result.rows);
+    } catch (error) {
+        res.status(500).json({ ok: false, message: error.message });
+    }
+});
+
+app.post('/api/bookings', async (req, res) => {
+    const { guestid, roomid, checkindate, checkoutdate,
+            bookingstatus, totalamount, numberofguests } = req.body;
+    
+    const bookingdate = new Date().toISOString().split('T')[0]; // today's date
+
+    try {
+        const result = await pool.query(
+            `INSERT INTO booking
+               (guestid, roomid, bookingdate, checkindate, checkoutdate, bookingstatus, totalamount, numberofguests)
+             VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
+             RETURNING bookingid AS "BookingID";`,
+            [guestid, roomid, bookingdate, checkindate, checkoutdate, bookingstatus, totalamount, numberofguests]
+        );
+        res.status(201).json({ ok: true, bookingId: result.rows[0].BookingID });
+    } catch (error) {
+        console.error("Booking insert error:", error);
+        res.status(500).json({ ok: false, message: error.message });
+    }
+});
+
+app.patch('/api/bookings/:id', async (req, res) => {
+    const { BookingStatus } = req.body;
+    try {
+        await pool.query(
+            'UPDATE booking SET bookingstatus = $1 WHERE bookingid = $2',
+            [BookingStatus, req.params.id]
+        );
+        res.json({ ok: true });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+app.patch('/api/rooms/:id', async (req, res) => {
+    const { RoomStatus } = req.body;
+    try {
+        await pool.query(
+            'UPDATE room SET roomstatus = $1 WHERE roomid = $2',
+            [RoomStatus, req.params.id]
+        );
+        res.json({ ok: true });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });

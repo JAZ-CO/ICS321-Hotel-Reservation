@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+        <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                extend: {
+                    "colors": {
+                            "surface-container-lowest": "#ffffff",
+                            "outline": "#76777d",
+                            "surface-dim": "#cbdbf5",
+                            "on-tertiary-fixed": "#191c1e",
+                            "surface-tint": "#565e74",
+                            "on-primary-fixed-variant": "#3f465c",
+                            "on-secondary-container": "#785c29",
+                            "on-secondary-fixed": "#271900",
+                            "inverse-surface": "#213145",
+                            "on-secondary": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "surface": "#f8f9ff",
+                            "surface-container-high": "#dce9ff",
+                            "on-secondary-fixed-variant": "#5b4211",
+                            "inverse-primary": "#bec6e0",
+                            "primary-fixed-dim": "#bec6e0",
+                            "on-primary-container": "#7c839b",
+                            "on-tertiary": "#ffffff",
+                            "secondary-container": "#fed798",
+                            "primary-fixed": "#dae2fd",
+                            "on-error": "#ffffff",
+                            "on-background": "#0b1c30",
+                            "primary": "#000000",
+                            "tertiary-container": "#191c1e",
+                            "surface-container": "#e5eeff",
+                            "outline-variant": "#c6c6cd",
+                            "on-tertiary-fixed-variant": "#444749",
+                            "on-primary-fixed": "#131b2e",
+                            "secondary-fixed": "#ffdea9",
+                            "background": "#f8f9ff",
+                            "tertiary": "#000000",
+                            "surface-container-highest": "#d3e4fe",
+                            "on-primary": "#ffffff",
+                            "inverse-on-surface": "#eaf1ff",
+                            "on-surface-variant": "#45464d",
+                            "secondary": "#755a27",
+                            "surface-bright": "#f8f9ff",
+                            "primary-container": "#131b2e",
+                            "error-container": "#ffdad6",
+                            "error": "#ba1a1a",
+                            "on-surface": "#0b1c30",
+                            "secondary-fixed-dim": "#e6c184",
+                            "tertiary-fixed": "#e0e3e5",
+                            "surface-container-low": "#eff4ff",
+                            "on-tertiary-container": "#818486",
+                            "tertiary-fixed-dim": "#c4c7c9",
+                            "surface-variant": "#d3e4fe"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "xs": "4px",
+                            "xl": "40px",
+                            "md": "16px",
+                            "sm": "8px",
+                            "gutter": "24px",
+                            "sidebar-width": "280px",
+                            "container-max": "1440px",
+                            "lg": "24px",
+                            "unit": "4px"
+                    },
+                    "fontFamily": {
+                            "h2": ["Noto Serif"],
+                            "h1": ["Noto Serif"],
+                            "button": ["Manrope"],
+                            "h3": ["Noto Serif"],
+                            "label-caps": ["Manrope"],
+                            "body-md": ["Manrope"],
+                            "body-sm": ["Manrope"],
+                            "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                            "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                            "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                            "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                            "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                            "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+                },
+            }
+            </script>
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .tonal-elevation-1 {
+                box-shadow: 0 4px 20px -2px rgba(11, 28, 48, 0.1);
+            }
+        </style>
+    </head>
+    <body class="bg-background text-on-background font-body-md">
+        <nav class="fixed top-0 w-full z-50 border-b bg-white/90 backdrop-blur-md border-slate-200 shadow-sm transition-all duration-300 ease-in-out">
+            <div class="flex justify-between items-center px-8 h-20 max-w-[1440px] mx-auto">
+                <div class="text-xl font-bold uppercase tracking-widest text-slate-900">
+                    <a href="../index.html">Home</a>
+                </div>
+                <div class="hidden md:flex items-center gap-8 font-serif text-slate-900 tracking-tight">
+                    <a class="text-slate-900 border-b-2 border-slate-900 pb-1 font-semibold font-serif tracking-tight" href="rooms.html">Rooms</a>
+                    <a class="text-slate-500 hover:text-slate-900 transition-colors" href="reservationHistory.html">Reservations</a>
+                    
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="hidden lg:flex items-center gap-4">
+                        <button class="p-2 hover:bg-slate-50 transition-all rounded-full"onclick="window.location.href='login.html'"><span class="material-symbols-outlined" data-icon="account_circle">account_circle</span></button>
+                    </div>
+                    <button class="bg-primary text-on-primary px-6 py-3 font-button rounded-lg hover:opacity-90 transition-all">
+                        Check Availability
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <main class="pt-32 pb-24 px-8 max-w-[1440px] mx-auto">
+            <header class="mb-16">
+                <h1 class="font-h1 text-h1 text-on-background mb-4">Curated Accommodations</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Discover refined elegance. Our system is currently synced with our live Aiven database.</p>
+            </header>
+
+            <div class="flex items-center justify-between mb-8 border-b border-outline-variant pb-4">
+                <div class="flex space-x-6">
+                    <button class="font-label-caps text-label-caps uppercase text-primary border-b-2 border-primary pb-4">All Rooms</button>
+                </div>
+            </div>
+
+            <div id="room-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+                <p class="text-slate-500 font-serif italic">Loading luxury accommodations...</p>
+            </div>
+        </main>
+
+        <script src="rooms.js">
+        </script>
+        <footer class="bg-slate-950 w-full border-t border-slate-800 py-12 px-8 flex flex-col items-center justify-center gap-6">
+        </footer>
+    </body>
+</html>
+
+
+
+
+

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | LuxeStay Concierge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f9ff",
+                        "primary-fixed": "#dae2fd",
+                        "on-secondary-fixed": "#271900",
+                        "surface-container-high": "#dce9ff",
+                        "secondary": "#755a27",
+                        "on-primary-fixed": "#131b2e",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#131b2e",
+                        "on-surface": "#0b1c30",
+                        "surface-dim": "#cbdbf5",
+                        "surface-variant": "#d3e4fe",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "secondary-fixed-dim": "#e6c184",
+                        "on-tertiary-container": "#818486",
+                        "on-background": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-secondary-fixed-variant": "#5b4211",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-low": "#eff4ff",
+                        "tertiary": "#000000",
+                        "outline": "#76777d",
+                        "on-secondary-container": "#785c29",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#45464d",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-bright": "#f8f9ff",
+                        "surface-tint": "#565e74",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#bec6e0",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed": "#ffdea9",
+                        "outline-variant": "#c6c6cd",
+                        "inverse-surface": "#213145",
+                        "primary": "#000000",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "tertiary-fixed": "#e0e3e5",
+                        "tertiary-container": "#191c1e",
+                        "secondary-container": "#fed798"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-max": "1440px",
+                        "sidebar-width": "280px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "xl": "40px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Manrope"],
+                        "button": ["Manrope"],
+                        "h1": ["Noto Serif"],
+                        "body-lg": ["Manrope"],
+                        "h2": ["Noto Serif"],
+                        "h3": ["Noto Serif"],
+                        "body-sm": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .form-focus-glow:focus {
+            box-shadow: 0 0 0 2px rgba(19, 27, 46, 0.1);
+            border-color: #131b2e;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<main class="flex-grow flex items-center justify-center px-lg py-xl">
+<div class="max-w-[1440px] w-full grid md:grid-cols-2 gap-0 overflow-hidden rounded-xl bg-surface-container-lowest shadow-[0_8px_30px_rgb(19,27,46,0.06)] border border-outline-variant">
+<div class="hidden md:block relative h-full min-h-[600px]">
+<img alt="Luxury Hotel Lobby" class="absolute inset-0 w-full h-full object-cover" data-alt="A serene and expansive luxury hotel lobby at dusk, featuring soaring ceilings and floor-to-ceiling windows overlooking a manicured private courtyard. The interior is bathed in warm, soft-focus ambient lighting that highlights polished marble floors and minimalist contemporary furniture. A sophisticated palette of deep navy, muted cream, and subtle gold accents reinforces a quiet luxury aesthetic. The atmosphere is professional, exclusive, and calming, reflecting a modern concierge brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq2eIF1v9m-yoaHZVgceGAbb7ttgN1Po1hc8JPkK78-eU9-DGRVCm689W0caaurefCiPEDD9IstCz3lgm0nZOVqRE5T_Z4X9kGp8U4MzNfb_sljEVqQxXunCt4-anaiTOCM2b9Zf38mbpVoI9M9cjx8YOU5VXs4SK90AsUbiTdDrBmOcuyIT-MLwlbhQ4V_RisxUsaBxTpeqxk9ZpDS6VNRO32JxrmyuxFVwyLqj8dOWvBSZlvLsOV2otQnVkXx4dGOeMuRw_FAJyT"/>
+<div class="absolute inset-0 bg-primary-container/20 backdrop-brightness-75 flex flex-col justify-end p-xl">
+<div class="space-y-md max-w-sm">
+<span class="font-label-caps text-label-caps text-on-primary uppercase tracking-widest bg-primary-container/40 backdrop-blur-md px-md py-xs rounded-full w-fit">Executive Portal</span>
+<h2 class="font-h2 text-h2 text-on-primary">LuxeStay Concierge</h2>
+<p class="font-body-md text-body-md text-primary-fixed-dim">Access your property management suite with precision and elegance.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col justify-center p-xl lg:p-32 bg-surface-container-lowest">
+<div class="mb-xl text-center md:text-left">
+<span class="font-serif text-lg font-bold uppercase tracking-widest text-slate-900 block mb-sm">LuxeStay Concierge</span>
+<h1 class="font-h1 text-h1 text-on-surface">Welcome Back</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Please enter your credentials to manage your estate.</p>
+</div>
+<form id="loginForm" class="space-y-lg">
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="name">Full Name</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-on-primary-container transition-colors" data-icon="person">person</span>
+<input id="name"class="w-full pl-xl pr-md py-md bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-on-surface form-focus-glow transition-all" id="name" placeholder="Alexander Hamilton" type="text"/>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="email">Work Email</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-on-primary-container transition-colors" data-icon="mail">mail</span>
+<input id="email"class="w-full pl-xl pr-md py-md bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-on-surface form-focus-glow transition-all" id="email" placeholder="a.hamilton@luxestay.com" type="email"/>
+</div>
+</div>
+
+<button class="w-full py-md px-lg bg-primary-container text-on-primary font-button text-button rounded-lg hover:bg-on-primary-fixed transition-all active:scale-[0.98] shadow-sm" type="submit">
+                        Login to Dashboard
+                    </button>
+</form>
+<div class="mt-xl flex flex-col items-center gap-md">
+<div class="w-full flex items-center gap-md">
+<div class="h-px bg-outline-variant flex-grow"></div>
+<span class="font-label-caps text-label-caps text-outline uppercase">New to LuxeStay?</span>
+<div class="h-px bg-outline-variant flex-grow"></div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+Need access to the property? 
+<a class="text-primary-container font-bold hover:underline decoration-2 underline-offset-4 ml-xs" href="createAccount.html">Register for an Account</a>
+</p>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full border-t border-slate-200 bg-surface-container-lowest py-lg px-8">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-md">
+</div>
+</div>
+<script src="login.js"></script>
+</footer>
+</body></html>

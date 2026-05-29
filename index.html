@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <title>LuxeStay Concierge - Modern Concierge Architecture</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+        <script id="tailwind-config">
+                tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                    "colors": {
+                            "outline-variant": "#c6c6cd",
+                            "on-tertiary-fixed-variant": "#444749",
+                            "on-primary-fixed": "#131b2e",
+                            "secondary-fixed": "#ffdea9",
+                            "primary": "#000000",
+                            "tertiary-container": "#191c1e",
+                            "surface-container": "#e5eeff",
+                            "secondary-container": "#fed798",
+                            "on-error": "#ffffff",
+                            "primary-fixed": "#dae2fd",
+                            "on-background": "#0b1c30",
+                            "tertiary": "#000000",
+                            "surface-container-highest": "#d3e4fe",
+                            "background": "#f8f9ff",
+                            "surface-bright": "#f8f9ff",
+                            "primary-container": "#131b2e",
+                            "error-container": "#ffdad6",
+                            "on-surface-variant": "#45464d",
+                            "secondary": "#755a27",
+                            "inverse-on-surface": "#eaf1ff",
+                            "on-primary": "#ffffff",
+                            "surface-variant": "#d3e4fe",
+                            "tertiary-fixed-dim": "#c4c7c9",
+                            "on-tertiary-container": "#818486",
+                            "secondary-fixed-dim": "#e6c184",
+                            "surface-container-low": "#eff4ff",
+                            "tertiary-fixed": "#e0e3e5",
+                            "error": "#ba1a1a",
+                            "on-surface": "#0b1c30",
+                            "outline": "#76777d",
+                            "surface-dim": "#cbdbf5",
+                            "surface-container-lowest": "#ffffff",
+                            "on-secondary-container": "#785c29",
+                            "on-primary-fixed-variant": "#3f465c",
+                            "surface-tint": "#565e74",
+                            "on-tertiary-fixed": "#191c1e",
+                            "surface-container-high": "#dce9ff",
+                            "surface": "#f8f9ff",
+                            "on-secondary": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "inverse-surface": "#213145",
+                            "on-secondary-fixed": "#271900",
+                            "on-primary-container": "#7c839b",
+                            "on-tertiary": "#ffffff",
+                            "primary-fixed-dim": "#bec6e0",
+                            "inverse-primary": "#bec6e0",
+                            "on-secondary-fixed-variant": "#5b4211"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "lg": "24px",
+                            "container-max": "1440px",
+                            "unit": "4px",
+                            "sm": "8px",
+                            "sidebar-width": "280px",
+                            "gutter": "24px",
+                            "md": "16px",
+                            "xl": "40px",
+                            "xs": "4px"
+                    },
+                    "fontFamily": {
+                            "body-lg": ["Manrope"],
+                            "body-sm": ["Manrope"],
+                            "label-caps": ["Manrope"],
+                            "body-md": ["Manrope"],
+                            "h3": ["Noto Serif"],
+                            "h1": ["Noto Serif"],
+                            "h2": ["Noto Serif"],
+                            "button": ["Manrope"]
+                    },
+                    "fontSize": {
+                            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                            "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                            "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                            "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                            "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "h2": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                            "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}]
+                    }
+                    },
+                },
+                }
+            </script>
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+            body {
+                background-color: #f8f9ff;
+            }
+        </style>
+    </head>
+    <body class="font-body-md text-on-surface">
+        <!-- Top Navigation Shell -->
+        <nav class="fixed top-0 w-full z-50 border-b bg-white/90 backdrop-blur-md border-slate-200 shadow-sm transition-all duration-300 ease-in-out">
+            <div class="flex justify-between items-center px-8 h-20 max-w-[1440px] mx-auto">
+                <div class="text-xl font-bold uppercase tracking-widest text-slate-900">
+                    <a href="index.html">Home</a>
+                </div>
+                <div class="hidden md:flex items-center gap-8 font-serif text-slate-900 tracking-tight">
+                    <a class="text-slate-500 hover:text-slate-900 transition-colors" href="src/rooms.html">Rooms</a>
+                    <a class="text-slate-500 hover:text-slate-900 transition-colors" href="src/reservationHistory.html">Reservations</a>
+                    
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="hidden lg:flex items-center gap-4">
+                        <button class="p-2 hover:bg-slate-50 transition-all rounded-full" onclick="window.location.href='src/login.html'"><span class="material-symbols-outlined" data-icon="account_circle">account_circle</span></button>
+                    </div>
+                    <button class="bg-primary text-on-primary px-6 py-3 font-button rounded-lg hover:opacity-90 transition-all">
+                        Check Availability
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <main class="pt-20">
+            <!-- Hero Section -->
+            <section class="relative h-[870px] w-full flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+            <img class="w-full h-full object-cover" data-alt="A wide-angle, cinematic view of a luxury hotel lobby featuring high ceilings, marble floors, and floor-to-ceiling windows overlooking a serene twilight cityscape. The lighting is warm and golden, contrasting with the cool blue hour outside. Modern minimalist furniture in charcoal and cream tones is arranged artistically throughout the space. The overall atmosphere is one of quiet, sophisticated luxury and architectural precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOY9Cxbr4CtoQsIbvQqAMX56u4kvxyLK91aqKfnsjuvhGHOa_sbvJEKj21j3UeyNqPozXmB8x-XJqrXZQcjVZiXHge3wO-xAS_LZYQ0fwauk4MiNpuzqzI6f3Z5NWAi4d9vT6AZ1mKc1lgwlLlHrbOgWQnWY1tBFI7IvysiloGibH6AGpWwsPwsezmJ14RIcVVf1bXnQJwS7goWJovNydH3uoX-CMVN6Qae2OoGrOuuGFQFI3b3Ynwc4d3EJ_HRX991Lrq55nfZhu-"/>
+            <div class="absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>
+            </div>
+            <div class="relative z-10 text-center px-6 max-w-4xl">
+    <h1 class="font-h1 text-[56px] leading-tight text-white mb-6 drop-shadow-lg">
+        The Architecture of <br/>Premium Hospitality
+    </h1>
+    <p class="font-body-lg text-white/90 mb-4 max-w-2xl mx-auto">
+        Palm Stay Hotel offers a seamless reservation experience built on precision and elegance. 
+        Browse available rooms, book your stay, and manage your reservations — all in one place.
+    </p>
+    <div class="flex justify-center gap-8 mb-12 text-white/80 font-body-sm">
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">location_on</span>
+            King Fahd Road, Dhahran
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">star</span>
+            4.5 · Luxury Hotel
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">bed</span>
+            Single & Double Suites
+        </div>
+    </div>
+    
+</div>
+            </section>
+            <!-- Signature Suites (Bento Grid) -->
+            
+            <section><div class="py-24"></div><div class="py-8"></div></section>
+            
+            
+        </main>
+        <!-- Footer -->
+         
+        <footer class="bg-slate-950 text-white py-20 px-8 border-t border-slate-800 flex flex-col items-center justify-center gap-10">
+        </footer>
+    </body>
+</html>
